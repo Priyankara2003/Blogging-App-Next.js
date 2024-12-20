@@ -20,8 +20,8 @@ export const signUpAction = async (formData: FormData) => {
   }
 
   const { error } = await supabase.auth.signUp({
-    email,
-    password,
+    email: email,
+    password: password,
     options: {
       emailRedirectTo: `${origin}/auth/callback`,
     },
