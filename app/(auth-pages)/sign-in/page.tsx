@@ -1,4 +1,4 @@
-import { signInAction } from "@/app/actions";
+import { signInAction, signInWithEmail } from "@/app/actions";
 import { FormMessage, Message } from "@/components/form-message";
 import { SubmitButton } from "@/components/submit-button";
 import { Input } from "@/components/ui/input";
@@ -32,8 +32,8 @@ export default async function Login(props: { searchParams: Promise<Message> }) {
           type="password"
           name="password"
           placeholder="Your password"
-          required
         />
+        <p className="mb-2">If you fogot password SignIn using <button className="text-rose-300" formAction={signInWithEmail}>Magic Link</button> via E-Mail</p>
         <SubmitButton pendingText="Signing In..." formAction={signInAction}>
           Sign in
         </SubmitButton>

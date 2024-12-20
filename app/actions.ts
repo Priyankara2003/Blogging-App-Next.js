@@ -56,6 +56,24 @@ export const signInAction = async (formData: FormData) => {
   return redirect("/protected");
 };
 
+export const signInWithEmail = async (formData: FormData) => {
+  const email = formData.get("email") as string;
+  const supabase = await createClient();
+
+  const { data, error } = await supabase.auth.signInWithOtp({
+    email: email,
+    options: {
+      // set this to false if you do not want the user to be automatically signed up
+      shouldCreateUser: false,
+    },
+  })
+
+  if (error) {
+    return encodedRedirect("error", "/sign-in", error.message);
+  }
+}
+
+
 export const forgotPasswordAction = async (formData: FormData) => {
   const email = formData.get("email")?.toString();
   const supabase = await createClient();
